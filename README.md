@@ -7,6 +7,9 @@
 ## Prerequisites
 nodejs
 ## How to run this project:
+- George Washington
+* John Adams
++ Thomas Jefferson
 ### -clone this project
 ### -Give following command:
 ### -npm i
