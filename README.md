@@ -2,10 +2,10 @@
 ### d-money is a demo financial related project where fake money can be transferred. In this project I have automate the d-money api using postman and newman. Here I have covered folowing tasks as create new user, login, search user, update and delete user
 
 ## About this project:
-### -postman
-### -newman
+- postman
+- newman
 ## Prerequisites
-nodejs
+- nodejs
 ## How to run this project:
 - clone this project
 - Give following command
