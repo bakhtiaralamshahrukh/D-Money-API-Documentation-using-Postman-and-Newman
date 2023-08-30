@@ -7,13 +7,10 @@
 ## Prerequisites
 nodejs
 ## How to run this project:
-- George Washington
-* John Adams
-+ Thomas Jefferson
-### -clone this project
-### -Give following command:
-### -npm i
-### -npm test
+- clone this project
+- Give following command
+- npm i
+- npm test
 
 ## Documentation
 ![image](https://github.com/bakhtiaralamshahrukh/ASSIGNMENT-2-D-Money/assets/69646920/3dcda8b2-3d25-4c68-9237-2666845c7b62)
