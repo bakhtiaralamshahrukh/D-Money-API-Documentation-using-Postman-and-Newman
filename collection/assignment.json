@@ -70,9 +70,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/user/login",
+							"raw": "http://dmoney.roadtocareer.net/user/login",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"dmoney",
+								"roadtocareer",
+								"net"
 							],
 							"path": [
 								"user",
@@ -105,10 +108,10 @@
 							"var id= jsonData.user.id;\r",
 							"var phonenumber=jsonData.user.phone_number;\r",
 							"pm.collectionVariables.set(\"userId\",id)\r",
-							"pm.collectionVariables.set(\"customer_phone_number\",phonenumber)\r",
+							"pm.collectionVariables.set(\"customer_phone_number3\",phonenumber)\r",
 							"\r",
 							"pm.environment.set(\"userId\",id)\r",
-							"pm.environment.set(\"customer_phone_number\",phonenumber)"
+							"pm.environment.set(\"customer_phone_number3\",phonenumber)"
 						],
 						"type": "text/javascript"
 					}
@@ -247,7 +250,7 @@
 			]
 		},
 		{
-			"name": "Admin can Create Customer 1 invalid role",
+			"name": "Admin can Create Customer (Wrong Role)",
 			"event": [
 				{
 					"listen": "test",
@@ -257,18 +260,18 @@
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.contains(\"User created\");\r",
 							"});\r",
+							"\r",
 							"pm.test(\"Status code is 203\", function () {\r",
 							"    pm.response.to.have.status(203);\r",
 							"});\r",
-							"\r",
 							"var jsonData= pm.response.json();\r",
 							"var id= jsonData.user.id;\r",
 							"var phonenumber=jsonData.user.phone_number;\r",
 							"pm.collectionVariables.set(\"userId\",id)\r",
-							"pm.collectionVariables.set(\"customer_phone_number\",phonenumber)\r",
+							"pm.collectionVariables.set(\"customer_phone_number10\",phonenumber)\r",
 							"\r",
 							"pm.environment.set(\"userId\",id)\r",
-							"pm.environment.set(\"customer_phone_number\",phonenumber)"
+							"pm.environment.set(\"customer_phone_number10\",phonenumber)"
 						],
 						"type": "text/javascript"
 					}
@@ -305,7 +308,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Test Customer 1\",\r\n    \"email\":\"user{{randomId}}@test.com\",\r\n    \"password\":\"1234\",\r\n    \"phone_number\":\"{{phoneNumber}}\",\r\n    \"nid\":\"123456789\",\r\n    \"role\":\"Custome2r\"\r\n}",
+					"raw": "{\r\n    \"name\":\"Test Customer 1\",\r\n    \"email\":\"user{{randomId}}@test.com\",\r\n    \"password\":\"1234\",\r\n    \"phone_number\":\"{{phoneNumber}}\",\r\n    \"nid\":\"123456789\",\r\n    \"role\":\"Custome$\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -579,10 +582,10 @@
 							"var id= jsonData.user.id;\r",
 							"var phonenumber=jsonData.user.phone_number;\r",
 							"pm.collectionVariables.set(\"userId\",id)\r",
-							"pm.collectionVariables.set(\"customer_phone_number\",phonenumber)\r",
+							"pm.collectionVariables.set(\"agent_phone_number2\",phonenumber)\r",
 							"\r",
 							"pm.environment.set(\"userId\",id)\r",
-							"pm.environment.set(\"customer_phone_number\",phonenumber)"
+							"pm.environment.set(\"agent_phone_number2\",phonenumber)"
 						],
 						"type": "text/javascript"
 					}
@@ -621,7 +624,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Test Agent 1\",\r\n    \"email\":\"user{{randomId}}@test.com\",\r\n    \"password\":\"1234\",\r\n    \"phone_number\":\"{{phoneNumber}}\",\r\n    \"nid\":\"123456789\",\r\n    \"role\":\"Customer\"\r\n}",
+					"raw": "{\r\n    \"name\":\"Test Agent 1\",\r\n    \"email\":\"user{{randomId}}@test.com\",\r\n    \"password\":\"1234\",\r\n    \"phone_number\":\"{{phoneNumber}}\",\r\n    \"nid\":\"123456789\",\r\n    \"role\":\"Agent\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -758,7 +761,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"SYSTEM\",\r\n    \"to_account\":\"{{agent_phone_number}}\",\r\n    \"amount\":500\r\n}\r\n\r\n\r\n",
+					"raw": "{\r\n    \"from_account\":\"SYSTEM\",\r\n    \"to_account\":\"{{agent_phone_number2}}\",\r\n    \"amount\": 200\r\n}\r\n\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -891,7 +894,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"AGENT\",\r\n    \"to_account\":\"{{agent_phone_number}}\",\r\n    \"amount\":500\r\n}\r\n\r\n\r\n",
+					"raw": "{\r\n    \"from_account\":\"AGENT\",\r\n    \"to_account\":\"{{agent_phone_number2}}\",\r\n    \"amount\":20\r\n}\r\n\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -993,7 +996,7 @@
 			]
 		},
 		{
-			"name": "System Deposit to Agent (10-10000)",
+			"name": "System Deposit to Agent (Attempt to deposit an amount less than the allowed range))",
 			"event": [
 				{
 					"listen": "test",
@@ -1028,7 +1031,144 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"SYSTEM\",\r\n    \"to_account\":\"{{agent_phone_number}}\",\r\n    \"amount\":7\r\n}\r\n\r\n\r\n",
+					"raw": "{\r\n    \"from_account\":\"SYSTEM\",\r\n    \"to_account\":\"{{agent_phone_number2}}\",\r\n    \"amount\":7\r\n}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/transaction/deposit",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"transaction",
+						"deposit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Deposit to Agent",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{secretKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from_account\":\"SYSTEM\",\r\n    \"to_account\":\"{{agent_phone_number}}\",\r\n    \"amount\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction/deposit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								"deposit"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Sep 2022 04:32:00 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express, Phusion Passenger(R) 6.0.14"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4e-gR131PNXhrMlFiEH4TLek4QKFYo\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "78"
+						},
+						{
+							"key": "Status",
+							"value": "201 Created"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Deposit successful\",\n    \"trnxId\": \"TXN580576\",\n    \"currentBalance\": 9212000\n}"
+				}
+			]
+		},
+		{
+			"name": "System Deposit to Agent (Attempt to deposit an amount greater than the allowed range)) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Minimum deposit amount 10 tk and maximum deposit amount 10000 tk\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).contains(\"Minimum deposit amount 10 tk and maximum deposit amount 10000 tk\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 208\", function () {\r",
+							"    pm.response.to.have.status(208);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-AUTH-SECRET-KEY",
+						"value": "{{secretKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from_account\":\"SYSTEM\",\r\n    \"to_account\":\"{{agent_phone_number2}}\",\r\n    \"amount\": 10003\r\n}\r\n\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1171,7 +1311,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"{{agent_phone_number}}\",\r\n    \"to_account\":\"{{customer_phone_number}}\",\r\n    \"amount\":400\r\n}",
+					"raw": "{\r\n    \"from_account\":\"{{agent_phone_number2}}\",\r\n    \"to_account\":\"{{customer_phone_number3}}\",\r\n    \"amount\":60\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1273,7 +1413,7 @@
 			]
 		},
 		{
-			"name": "agent Deposit to Customer invalid agent no.",
+			"name": "agent Deposit to Customer (Attempt to deposit an amount greater than the allowed range)",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -1289,7 +1429,150 @@
 					"script": {
 						"exec": [
 							"\r",
-							"pm.test(\"Status code is 404\", function () {\r",
+							"\r",
+							"pm.test(\"Insufficient balance\", function () {\r",
+							"    pm.response.to.have.status(208);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-AUTH-SECRET-KEY",
+						"value": "{{secretKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from_account\":\"{{agent_phone_number2}}\",\r\n    \"to_account\":\"{{customer_phone_number3}}\",\r\n    \"amount\":500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/transaction/deposit",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"transaction",
+						"deposit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Deposit to Customer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{secretKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from_account\":\"{{agent_phone_number}}\",\r\n    \"to_account\":\"{{customer_phone_number}}\",\r\n    \"amount\":1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction/deposit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								"deposit"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Sep 2022 04:32:16 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express, Phusion Passenger(R) 6.0.14"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4b-e/3Qx7RQskiPIy3ErlJkaeabZR8\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "75"
+						},
+						{
+							"key": "Status",
+							"value": "201 Created"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Deposit successful\",\n    \"trnxId\": \"TXN542052\",\n    \"currentBalance\": 9000\n}"
+				}
+			]
+		},
+		{
+			"name": "agent Deposit to Customer invalid agent account no.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Account does not exist\", function () {\r",
 							"    pm.response.to.have.status(404);\r",
 							"});"
 						],
@@ -1313,7 +1596,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"{{agent_phone_number2}}\",\r\n    \"to_account\":\"{{customer_phone_number}}\",\r\n    \"amount\":400\r\n}",
+					"raw": "{\r\n    \"from_account\":\"{{agent_phone_number3}}\",\r\n    \"to_account\":\"{{customer_phone_number3}}\",\r\n    \"amount\":60\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1449,14 +1732,131 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/transaction/balance/{{agent_phone_number}}",
+					"raw": "{{baseUrl}}/transaction/balance/{{agent_phone_number2}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"transaction",
 						"balance",
-						"{{agent_phone_number}}"
+						"{{agent_phone_number2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Check agent balance",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{secretKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/balance/{{agent_phone_number}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								"balance",
+								"{{agent_phone_number}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Sep 2022 04:32:09 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express, Phusion Passenger(R) 6.0.14"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2a-1C2l8awSnTKTGG4LspKagTZBmlA\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Status",
+							"value": "200 OK"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User balance\",\n    \"balance\": 10000\n}"
+				}
+			]
+		},
+		{
+			"name": "Check agent balance wrong url",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Wrong URL\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-SECRET-KEY",
+						"value": "{{secretKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/transaction/be/{{agent_phone_number2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"transaction",
+						"be",
+						"{{agent_phone_number2}}"
 					]
 				}
 			},
@@ -1542,7 +1942,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Customer deposit is successful\",()=>{\r",
+							"pm.test(\"Withdraw successful\",()=>{\r",
 							"    var jsonData= pm.response.json();\r",
 							"    var message= jsonData.message;\r",
 							"    pm.expect(message).contains(\"Withdraw successful\")\r",
@@ -1568,7 +1968,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number}}\",\r\n    \"to_account\":\"{{agent_phone_number}}\",\r\n    \"amount\":20\r\n}",
+					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number3}}\",\r\n    \"to_account\":\"{{agent_phone_number2}}\",\r\n    \"amount\":10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1670,15 +2070,15 @@
 			]
 		},
 		{
-			"name": "Money withdraw by customer invalid customer no.",
+			"name": "Money withdraw by customer Negative amount entry",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"\r",
-							"pm.test(\"Status code is 404\", function () {\r",
-							"    pm.response.to.have.status(404);\r",
+							"pm.test(\"Negative amount\", function () {\r",
+							"    pm.response.to.have.status(208);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -1701,7 +2101,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number4}}\",\r\n    \"to_account\":\"{{agent_phone_number}}\",\r\n    \"amount\":20\r\n}",
+					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number3}}\",\r\n    \"to_account\":\"{{agent_phone_number2}}\",\r\n    \"amount\":-20\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1835,7 +2235,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number}}\",\r\n    \"to_account\":\"{{agent_phone_number}}\",\r\n    \"amount\":1\r\n}",
+					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number3}}\",\r\n    \"to_account\":\"{{agent_phone_number2}}\",\r\n    \"amount\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1971,14 +2371,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{baseUrl}}/transaction/balance/{{customer_phone_number}}",
+					"raw": "{{baseUrl}}/transaction/balance/{{customer_phone_number3}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"transaction",
 						"balance",
-						"{{customer_phone_number}}"
+						"{{customer_phone_number3}}"
 					]
 				}
 			},
@@ -2090,7 +2490,141 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number}}\",\r\n    \"to_account\":\"{{customer_phone_number2}}\",\r\n    \"amount\":40\r\n}",
+					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number3}}\",\r\n    \"to_account\":\"{{customer_phone_number2}}\",\r\n    \"amount\":15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/transaction/sendmoney",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"transaction",
+						"sendmoney"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Send money by newly created customer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{secretKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from_account\":\"{{customer_phone_number}}\",\r\n    \"to_account\":\"01686606909\",\r\n    \"amount\":50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction/sendmoney",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								"sendmoney"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Sep 2022 04:32:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express, Phusion Passenger(R) 6.0.14"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"55-1Uu3FtnQH5SfAOioIrsONgDM1nM\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "85"
+						},
+						{
+							"key": "Status",
+							"value": "201 Created"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Send money successful\",\n    \"trnxId\": \"TXN608861\",\n    \"fee\": 5,\n    \"currentBalance\": 885\n}"
+				}
+			]
+		},
+		{
+			"name": "Send money to other created customer send more than their available balance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Insufficient balance\", function () {\r",
+							"    pm.response.to.have.status(208);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-AUTH-SECRET-KEY",
+						"value": "{{secretKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number3}}\",\r\n    \"to_account\":\"{{customer_phone_number2}}\",\r\n    \"amount\":5000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2201,7 +2735,7 @@
 							"\r",
 							"\r",
 							"pm.test(\"From account and to account cannot be same\", function () {\r",
-							"    pm.response.to.have.status(208);\r",
+							"    pm.response.to.have.status(404);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -2224,7 +2758,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number2}}\",\r\n    \"to_account\":\"{{customer_phone_number2}}\",\r\n    \"amount\":10\r\n}",
+					"raw": "{\r\n    \"from_account\":\"{{customer_phone_number4}}\",\r\n    \"to_account\":\"{{customer_phone_number2}}\",\r\n    \"amount\":10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2460,127 +2994,6 @@
 			]
 		},
 		{
-			"name": "Check customer2 balance",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"User balance\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.message).contains(\"User balance\");\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					},
-					{
-						"key": "X-AUTH-SECRET-KEY",
-						"value": "{{secretKey}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{baseUrl}}/transaction/balance/{{customer_phone_number2}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"transaction",
-						"balance",
-						"{{customer_phone_number2}}"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Check customer balance",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							},
-							{
-								"key": "X-AUTH-SECRET-KEY",
-								"value": "{{secretKey}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/transaction/balance/{{customer_phone_number}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"transaction",
-								"balance",
-								"{{customer_phone_number}}"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Mon, 19 Sep 2022 04:32:21 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Apache"
-						},
-						{
-							"key": "X-Powered-By",
-							"value": "Express, Phusion Passenger(R) 6.0.14"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"29-HgNOfMiRMJMhV6I2kJCFZ36KxcA\""
-						},
-						{
-							"key": "Content-Length",
-							"value": "41"
-						},
-						{
-							"key": "Status",
-							"value": "200 OK"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5, max=99"
-						},
-						{
-							"key": "Connection",
-							"value": "Keep-Alive"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"message\": \"User balance\",\n    \"balance\": 1000\n}"
-				}
-			]
-		},
-		{
 			"name": "Payment by customer2 invalid account",
 			"event": [
 				{
@@ -2711,6 +3124,127 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"Withdraw successful\",\n    \"trnxId\": \"TXN694480\",\n    \"fee\": 10,\n    \"currentBalance\": 940\n}"
+				}
+			]
+		},
+		{
+			"name": "Check customer2 balance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"User balance\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).contains(\"User balance\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-AUTH-SECRET-KEY",
+						"value": "{{secretKey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/transaction/balance/{{customer_phone_number2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"transaction",
+						"balance",
+						"{{customer_phone_number2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Check customer balance",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "X-AUTH-SECRET-KEY",
+								"value": "{{secretKey}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/transaction/balance/{{customer_phone_number}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction",
+								"balance",
+								"{{customer_phone_number}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 19 Sep 2022 04:32:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express, Phusion Passenger(R) 6.0.14"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"29-HgNOfMiRMJMhV6I2kJCFZ36KxcA\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Status",
+							"value": "200 OK"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=99"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User balance\",\n    \"balance\": 1000\n}"
 				}
 			]
 		},
@@ -2864,11 +3398,11 @@
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbG1hbkByb2FkdG9jYXJlZXIubmV0IiwicGFzc3dvcmQiOiIxMjM0IiwiaWF0IjoxNjc0OTgyODAwLCJleHAiOjE2NzQ5ODQ2MDB9.ncrG1IOG7Jm5gd7vX0CCxX6zXg1mdn8f7fWK_exleHM"
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHJvYWR0b2NhcmVlci5uZXQiLCJwYXNzd29yZCI6IjEyMzQiLCJpYXQiOjE2OTMzNzAxNTgsImV4cCI6MTY5MzM3MTk1OH0.NJL9TvKKpIkqAeHRwDidQeGS4NZgu_91LmR5ySeZXYY"
 		},
 		{
 			"key": "randomId",
-			"value": 94118
+			"value": 11450
 		},
 		{
 			"key": "secretKey",
@@ -2877,7 +3411,7 @@
 		},
 		{
 			"key": "userId",
-			"value": 4156
+			"value": 25593
 		},
 		{
 			"key": "phone_number",
@@ -2885,19 +3419,19 @@
 		},
 		{
 			"key": "agentId",
-			"value": 4155
+			"value": 25328
 		},
 		{
 			"key": "agent_phone_number",
-			"value": "01708150709"
+			"value": "01708938081"
 		},
 		{
 			"key": "customer_phone_number",
-			"value": "01503805239"
+			"value": "01504594902"
 		},
 		{
 			"key": "phoneNumber",
-			"value": "01706364497"
+			"value": "01504594902"
 		},
 		{
 			"key": "merchant_phone_number",
@@ -2906,6 +3440,18 @@
 		},
 		{
 			"key": "customer_phone_number2",
+			"value": "01502613643"
+		},
+		{
+			"key": "agent_phone_number2",
+			"value": ""
+		},
+		{
+			"key": "customer_phone_number3",
+			"value": ""
+		},
+		{
+			"key": "customer_phone_number10",
 			"value": ""
 		}
 	]
