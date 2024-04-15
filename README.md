@@ -1,4 +1,4 @@
-# ASSIGNMENT D-Money:
+# D-Money-API-Documentation-using-Postman-and-Newman (ASSIGNMENT D-Money):
 ### d-money is a demo financial related project where fake money can be transferred. In this project I have automate the d-money api using postman and newman. Here I have covered folowing tasks as create new user, login, deposit money, withdraw money, send money, make payment, and checking Statement of user.
 
 ## About this project:
